@@ -1,3 +1,1 @@
-小金庫 Money Beta 2
-
-打開 index.html 可測試。部署到 GitHub Pages 後可用 iPhone Safari 加入主畫面。
+小金庫 V2：深藍米白風格、成員自行新增。
