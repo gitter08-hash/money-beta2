@@ -1,0 +1,9 @@
+{
+  "name": "小金庫 Money Beta 2",
+  "short_name": "小金庫",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#4f8cff",
+  "icons": []
+}

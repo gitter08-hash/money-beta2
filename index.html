@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#4f8cff" />
+  <title>小金庫 Money Beta 2</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <div>
+        <p class="eyebrow">Money Beta 2</p>
+        <h1>💰 小金庫</h1>
+      </div>
+      <button id="backupBtn" class="ghost" type="button">備份</button>
+    </header>
+
+    <section id="homePage" class="page active">
+      <div class="cards two">
+        <article class="card">
+          <span>👤 我的資產</span>
+          <strong id="personalTotal">$0</strong>
+        </article>
+        <article class="card">
+          <span>❤️ 共用金</span>
+          <strong id="sharedTotal">$0</strong>
+        </article>
+      </div>
+
+      <article class="card wide">
+        <span>📊 本月總覽</span>
+        <div class="summary">
+          <div><small>收入</small><b id="monthIncome">$0</b></div>
+          <div><small>支出</small><b id="monthExpense">$0</b></div>
+          <div><small>結餘</small><b id="monthBalance">$0</b></div>
+        </div>
+      </article>
+
+      <section class="quick">
+        <h2>⚡ 快速模板</h2>
+        <div class="chips">
+          <button type="button" data-template="午餐|餐飲|expense|personal">🍜 午餐</button>
+          <button type="button" data-template="飲料|飲料|expense|personal">🥤 飲料</button>
+          <button type="button" data-template="房租|房租|expense|personal">🏠 房租</button>
+          <button type="button" data-template="毛孩|毛孩|expense|personal">🐶 毛孩</button>
+          <button type="button" data-template="薪水|薪水|income|personal">💰 薪水</button>
+        </div>
+      </section>
+
+      <section>
+        <div class="sectionTitle">
+          <h2>📝 最近記帳</h2>
+          <button class="link" type="button" data-nav="recordsPage">全部</button>
+        </div>
+        <div id="recentList" class="list"></div>
+      </section>
+    </section>
+
+    <section id="addPage" class="page">
+      <h2>➕ 快速記一筆</h2>
+      <div class="form card wide">
+        <label>金額<input id="amount" type="number" inputmode="decimal" placeholder="例如 120" /></label>
+        <label>收入 / 支出
+          <select id="type"><option value="expense">支出</option><option value="income">收入</option></select>
+        </label>
+        <label>帳本
+          <select id="account"><option value="personal">👤 個人</option><option value="shared">❤️ 共用</option></select>
+        </label>
+        <label>分類<input id="category" placeholder="餐飲、交通、薪水..." /></label>
+        <label>資產帳戶
+          <select id="asset">
+            <option value="cash">現金</option>
+            <option value="bank">銀行</option>
+            <option value="linePay">LINE Pay</option>
+            <option value="jkoPay">街口</option>
+            <option value="creditCard">信用卡</option>
+          </select>
+        </label>
+        <label id="advanceWrap">共用代墊人
+          <select id="advanceBy"><option value="">不用記代墊</option><option>慧慈</option><option>仲凱</option></select>
+        </label>
+        <label>日期<input id="date" type="date" /></label>
+        <label>備註<input id="note" placeholder="午餐、全聯、加油..." /></label>
+        <button id="saveBtn" class="primary" type="button">儲存</button>
+        <button id="cancelEditBtn" class="ghost hide" type="button">取消編輯</button>
+      </div>
+    </section>
+
+    <section id="recordsPage" class="page">
+      <div class="sectionTitle">
+        <h2>📒 記帳明細</h2>
+      </div>
+      <input id="search" class="search" placeholder="🔍 搜尋分類、備註、帳戶" />
+      <div class="filter">
+        <button type="button" class="active" data-filter="all">全部</button>
+        <button type="button" data-filter="personal">個人</button>
+        <button type="button" data-filter="shared">共用</button>
+      </div>
+      <div id="recordList" class="list"></div>
+    </section>
+
+    <section id="assetsPage" class="page">
+      <h2>💳 資產</h2>
+      <div id="assetList" class="list"></div>
+      <p class="hint">提示：收入會加到資產帳戶，支出會扣掉資產帳戶。信用卡支出會顯示為負數。</p>
+    </section>
+
+    <section id="sharedPage" class="page">
+      <h2>❤️ 共用金</h2>
+      <article class="card wide">
+        <div class="summary">
+          <div><small>共用收入</small><b id="sharedIncome">$0</b></div>
+          <div><small>共用支出</small><b id="sharedExpense">$0</b></div>
+          <div><small>共用餘額</small><b id="sharedBalance">$0</b></div>
+        </div>
+      </article>
+      <article class="card wide settlement">
+        <p>慧慈代墊：<b id="huiAdvance">$0</b></p>
+        <p>仲凱代墊：<b id="kaiAdvance">$0</b></p>
+        <hr />
+        <p id="settlementText">目前不需要結算</p>
+      </article>
+    </section>
+
+    <nav class="tabbar">
+      <button type="button" class="active" data-nav="homePage">🏠<span>首頁</span></button>
+      <button type="button" data-nav="addPage">➕<span>記帳</span></button>
+      <button type="button" data-nav="recordsPage">📒<span>明細</span></button>
+      <button type="button" data-nav="assetsPage">💳<span>資產</span></button>
+      <button type="button" data-nav="sharedPage">❤️<span>共用</span></button>
+    </nav>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
