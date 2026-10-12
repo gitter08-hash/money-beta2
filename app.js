@@ -2,7 +2,7 @@ const KEY='moneybeta_v2';
 const today=()=>new Date().toISOString().slice(0,10);
 const fmt=n=>'NT$ '+Number(n||0).toLocaleString();
 const $=id=>document.getElementById(id);
-const icons={'餐飲':'🍜','飲料':'🥤','房租':'🏠','毛孩':'🐶','薪水':'💰','交通':'🚗','購物':'🛍️','醫療':'💊','娛樂':'🎮'};
+const icons={'餐飲':'🍜','飲料':'🥤','晚餐':'🍱','生活':'🛍','薪水':'💰','交通':'🚗','購物':'🛍️','醫療':'💊','娛樂':'🎮'};
 const assetNames={cash:'現金',bank:'銀行',linePay:'LINE Pay',jkoPay:'街口',creditCard:'信用卡'};
 let db=JSON.parse(localStorage.getItem(KEY)||'null')||{members:[],records:[],assets:{personal:{cash:0,bank:0,linePay:0,jkoPay:0,creditCard:0},shared:{cash:0,bank:0,linePay:0,jkoPay:0,creditCard:0}}};
 let editId=null,filter='all';

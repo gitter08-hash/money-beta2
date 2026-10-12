@@ -65,8 +65,8 @@
         <div class="chips">
           <button type="button" data-template="午餐|餐飲|expense|personal">🍜 午餐</button>
           <button type="button" data-template="飲料|飲料|expense|personal">🥤 飲料</button>
-          <button type="button" data-template="房租|房租|expense|personal">🏠 房租</button>
-          <button type="button" data-template="毛孩|毛孩|expense|personal">🐶 毛孩</button>
+          <button type="button" data-template="晚餐|晚餐|expense|personal">🍱 晚餐</button>
+          <button type="button" data-template="生活|生活|expense|personal">🛍 生活</button>
         </div>
       </article>
 
@@ -125,5 +125,18 @@
   </section>
 </main>
 <script src="app.js"></script>
+<script>
+
+if ('serviceWorker' in navigator) {
+
+  navigator.serviceWorker.register('./sw.js')
+
+    .then(() => console.log('小金庫離線功能註冊成功'))
+
+    .catch(err => console.error('註冊失敗', err));
+
+}
+
+</script>
 </body>
 </html>
